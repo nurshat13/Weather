@@ -20,6 +20,7 @@ let next = document.querySelector(".carousel-control-next"),
   infoNoneSlide = document.querySelector(".infoNoneSlide"),
   infoNoneIndecetor = document.querySelector("#infoNoneSlide");
 
+
 let mainData = {};
 
 const citis = ["Moscow", "London", "New York", "Pekin", "Paris"];
@@ -27,10 +28,10 @@ const citis = ["Moscow", "London", "New York", "Pekin", "Paris"];
 function start() {
   for (let i = 0; i < 5; i++) {
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
         citis[i] +
         "&appid=87dffc1b85ab9f31841b19cb7bb862e1"
-    )
+      )
       .then((response) => response.json())
       .then((data) => {
         h1[i].textContent = data["name"];
@@ -58,6 +59,8 @@ function newSlide() {
   infoNoneIndecetor.id = "corItems";
   infoNoneIndecetor.classList.add("active");
 
+
+
   infoNoneSlide.removeAttribute("class");
   infoNoneSlide.classList.add("carousel-item");
   infoNoneSlide.classList.add("active");
@@ -73,10 +76,10 @@ function newSlide() {
 
 searhButton.addEventListener("click", function (e) {
   fetch(
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
       searhInput.value +
       "&appid=87dffc1b85ab9f31841b19cb7bb862e1"
-  )
+    )
     .then((response) => response.json())
     .then((data) => {
       newSlide();
@@ -124,20 +127,24 @@ function createData(objName, data) {
   return objName;
 }
 
+function setDitailInfo(i) {
+  info.id = "info";
+  img.src = "img/" + (i + 1) + ".jpg";
+  name.textContent = "City Name: " + mainData[i]["name"];
+  country.textContent = "Country: " + mainData[i]["country"];
+  tempInfo.textContent =
+    "Temperature: " + mainData[i]["temp"].toFixed() + " ℃";
+  tempFeels.textContent =
+    "Feels like: " + mainData[i]["tempFeelsLike"].toFixed() + " ℃";
+  descrip.textContent = "Description: " + mainData[i]["description"];
+  wind_speed.textContent =
+    "Wind speed: " + mainData[i]["windSpeed"].toFixed();
+}
+
 function detailed() {
   for (let i = 0; i < btn.length; i++) {
     btn[i].addEventListener("click", function (e) {
-      info.id = "info";
-      img.src = "img/" + (i + 1) + ".jpg";
-      name.textContent = "City Name: " + mainData[i]["name"];
-      country.textContent = "Country: " + mainData[i]["country"];
-      tempInfo.textContent =
-        "Temperature: " + mainData[i]["temp"].toFixed() + " ℃";
-      tempFeels.textContent =
-        "Feels like: " + mainData[i]["tempFeelsLike"].toFixed() + " ℃";
-      descrip.textContent = "Description: " + mainData[i]["description"];
-      wind_speed.textContent =
-        "Wind speed: " + mainData[i]["windSpeed"].toFixed();
+      setDitailInfo(i);
     });
   }
 }
@@ -147,11 +154,12 @@ let activ = 0;
 next.addEventListener("click", function (e) {
   images[activ].classList.remove("active");
   carouseIndicators[activ].classList.remove("active");
-  if (activ + 1 == images.length) {
+  if (activ + 1 == carouseIndicators.length) {
     activ = 0;
   } else {
     activ++;
   }
+  setDitailInfo(activ);
   carouseIndicators[activ].classList.add("active");
   images[activ].classList.add("active");
 });
@@ -160,10 +168,11 @@ previous.addEventListener("click", function (e) {
   images[activ].classList.remove("active");
   carouseIndicators[activ].classList.remove("active");
   if (activ == 0) {
-    activ = images.length - 1;
+    activ = carouseIndicators.length - 1;
   } else {
     activ--;
   }
+  setDitailInfo(activ);
   carouseIndicators[activ].classList.add("active");
   images[activ].classList.add("active");
 });
@@ -181,6 +190,7 @@ function indecetors(Indecetorslenght) {
           images[i].classList.remove("active");
         }
       }
+      setDitailInfo(i);
       carouseIndicators[i].classList.add("active");
       images[i].classList.add("active");
     });

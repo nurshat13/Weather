@@ -52,11 +52,16 @@ html {
   background-image: url("/img/wib.png");
   background-color: rgba(0, 0, 0, 0.418);
   background-size: cover;
+  height: 100vh;
 }
 
+
 #winf {
-  margin-left: 25%;
-  margin-top: 50%;
+  text-align: center;
+}
+
+#wInfo {
+  margin-top: 35%;
 }
 
 #infoNone {
@@ -64,6 +69,10 @@ html {
 }
 
 #infoNoneSlide {
+  display: none;
+}
+
+#infoNoneButton {
   display: none;
 }
 
@@ -531,7 +540,7 @@ mark {
 
 .img-fluid {
   max-width: 100%;
-  height: auto
+  height: 100vh;
 }
 
 .img-thumbnail {
@@ -7228,7 +7237,7 @@ a.close.disabled {
 .carousel-caption {
   position: absolute;
   right: 15%;
-  bottom: 20px;
+  bottom: 40px;
   left: 15%;
   z-index: 10;
   padding-top: 20px;
