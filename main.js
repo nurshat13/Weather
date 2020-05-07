@@ -75,15 +75,16 @@ function newSlide() {
 }
 
 searhButton.addEventListener("click", function (e) {
+  const searchValue = searhInput.value.trim().toLowerCase();
   fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
-      searhInput.value +
+      searchValue +
       "&appid=87dffc1b85ab9f31841b19cb7bb862e1"
     )
     .then((response) => response.json())
     .then((data) => {
+      console.log(data, searchValue);
       newSlide();
-      // cityImages[i].src = "img/wib.png";
       h1[5].textContent = data["name"];
       let kelvin = data["main"]["temp"] - 273;
       temp[5].textContent = "Temperature: " + kelvin.toFixed() + " ℃";
