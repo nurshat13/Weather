@@ -9,7 +9,7 @@ button.addEventListener("click", function (e) {
   let mail = email.value,
     pass = password.value,
     passConfirm = passwordConfirm.value,
-    key;
+    key, isHasReg = false;
   // console.log(passConfirm);
   if (mail == "" && pass == "") {
     alert("Вы оставили один из полей пустым!");
@@ -29,9 +29,12 @@ button.addEventListener("click", function (e) {
         if (key == mail) {
           alert("Вы уже зарегистрировыны зайдите на сайт!");
         } else {
-          localStorage[mail] = pass;
+          isHasReg = true;
           document.location.href = "logIn.html";
         }
+      }
+      if (!isHasReg) {
+        localStorage[mail] = pass;
       }
     }
 
