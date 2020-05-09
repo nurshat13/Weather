@@ -28,16 +28,14 @@ button.addEventListener("click", function (e) {
         key = localStorage.key(i);
         if (key == mail) {
           alert("Вы уже зарегистрировыны зайдите на сайт!");
-        } else {
           isHasReg = true;
-          document.location.href = "logIn.html";
         }
       }
-      if (!isHasReg) {
-        localStorage[mail] = pass;
-      }
     }
-
   }
 
+  if (!isHasReg) {
+    localStorage[mail] = pass;
+    document.location.href = "logIn.html";
+  }
 });
