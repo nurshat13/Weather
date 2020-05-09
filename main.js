@@ -1,3 +1,27 @@
+let currentUser,
+  key, user, isYes = false;
+currentUser = localStorage.getItem("currentUser");
+
+if (localStorage.length < 1) {
+  alert("Вам нужно зарегистрироваться");
+  document.location.href = "regestration.html";
+} else if (currentUser === null) {
+  alert("Вам нужно войти")
+  document.location.href = "logIn.html";
+}
+
+for (let i = 0; i < localStorage.length; i++) {
+  user = localStorage.key(i);
+  if (user == currentUser) {
+    isYes = true;
+  }
+}
+
+if (isYes) {} else {
+  alert("Вам нужно зарегистрироваться");
+  document.location.href = "regestration.html";
+}
+
 let next = document.querySelector(".carousel-control-next"),
   previous = document.querySelector(".carousel-control-prev"),
   images = document.querySelectorAll(".carousel-item"),
@@ -19,7 +43,6 @@ let next = document.querySelector(".carousel-control-next"),
   cityImages = document.querySelector(".img-fluid"),
   infoNoneSlide = document.querySelector(".infoNoneSlide"),
   infoNoneIndecetor = document.querySelector("#infoNoneSlide");
-
 
 let mainData = {};
 
@@ -59,8 +82,6 @@ function newSlide() {
   infoNoneIndecetor.id = "corItems";
   infoNoneIndecetor.classList.add("active");
 
-
-
   infoNoneSlide.removeAttribute("class");
   infoNoneSlide.classList.add("carousel-item");
   infoNoneSlide.classList.add("active");
@@ -74,8 +95,8 @@ function newSlide() {
   detailed();
 }
 
-searhButton.addEventListener("click", function (e) {
-  const searchValue = searhInput.value.trim().toLowerCase();
+function searchCity() {
+  let searchValue = searhInput.value.trim().toLowerCase();
   fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       searchValue +
@@ -103,18 +124,23 @@ searhButton.addEventListener("click", function (e) {
         "Wind speed: " + mainData[5]["windSpeed"].toFixed();
     })
     .catch((err) => {
-      infoNoneIndecetor.removeAttribute("id");
-      infoNoneIndecetor.id = "infoNoneSlide";
-      infoNoneIndecetor.removeAttribute("class");
-      infoNoneSlide.removeAttribute("class");
-      infoNoneSlide.classList.add("carousel-item");
-      infoNoneSlide.classList.add("infoNoneSlide");
-      carouseIndicators[0].classList.add("active");
-      images[0].classList.add("active");
       alert("Wrong city name!");
       window.location.reload();
     });
+}
+
+searhButton.addEventListener("click", function (e) {
+  e.stopImmediatePropagation();
+  searchCity();
 });
+
+// searhButton.addEventListener("keyup", function (e) {
+//   if (event.keyCode === 13) {
+//     e.stopImmediatePropagation();
+//     e.preventDefault();
+//     searchCity();
+//   }
+// });
 
 function createData(objName, data) {
   objName = {
@@ -133,13 +159,11 @@ function setDitailInfo(i) {
   img.src = "img/" + (i + 1) + ".jpg";
   name.textContent = "City Name: " + mainData[i]["name"];
   country.textContent = "Country: " + mainData[i]["country"];
-  tempInfo.textContent =
-    "Temperature: " + mainData[i]["temp"].toFixed() + " ℃";
+  tempInfo.textContent = "Temperature: " + mainData[i]["temp"].toFixed() + " ℃";
   tempFeels.textContent =
     "Feels like: " + mainData[i]["tempFeelsLike"].toFixed() + " ℃";
   descrip.textContent = "Description: " + mainData[i]["description"];
-  wind_speed.textContent =
-    "Wind speed: " + mainData[i]["windSpeed"].toFixed();
+  wind_speed.textContent = "Wind speed: " + mainData[i]["windSpeed"].toFixed();
 }
 
 function detailed() {

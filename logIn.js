@@ -10,6 +10,7 @@ button.addEventListener("click", function (e) {
     isLoged = 0;
   if (localStorage.length < 1) {
     alert("Вы не зарегестрированы");
+    document.location.href = "regestration.html";
   } else {
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
@@ -24,6 +25,7 @@ button.addEventListener("click", function (e) {
     alert("Вы оставили один из полей пустым!");
   } else if (isLoged == 1) {
     document.location.href = "index.html";
+    localStorage['currentUser'] = mail;
   } else {
     alert("Не верный пароль или логин");
   }
