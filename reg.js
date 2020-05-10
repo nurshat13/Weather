@@ -14,7 +14,7 @@ button.addEventListener("click", function (e) {
   // console.log(passConfirm);
   if (mail == "" && pass == "") {
     alert("Вы оставили один из полей пустым!");
-  } else if (mail.trim() == "" && pass.trim() == "") {
+  } else if (mail.trim() === "" && pass.trim() === "") {
     alert("Вы оставили один из полей пустым!");
   } else if (pass.length < 8) {
     alert("Пароль должен содержать не меньше 8-ми символов!");
