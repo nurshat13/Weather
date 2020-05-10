@@ -132,21 +132,22 @@ function searchCity() {
 
 searhButton.addEventListener("click", function (e) {
   e.stopImmediatePropagation();
+  e.preventDefault();
   searchCity();
 });
 
 modalProfile.addEventListener("click", function (e) {
-  e.stopImmediatePropagation();
+
   document.location.href = "Profile.html";
 });
 
-// searhButton.addEventListener("keyup", function (e) {
-//   if (event.keyCode === 13) {
-//     e.stopImmediatePropagation();
-//     e.preventDefault();
-//     searchCity();
-//   }
-// });
+searhInput.addEventListener("keydown", function (e) {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    searchCity();
+  }
+});
 
 function createData(objName, data) {
   objName = {
