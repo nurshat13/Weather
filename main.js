@@ -43,7 +43,8 @@ let next = document.querySelector(".carousel-control-next"),
   cityImages = document.querySelector(".img-fluid"),
   infoNoneSlide = document.querySelector(".infoNoneSlide"),
   infoNoneIndecetor = document.querySelector("#infoNoneSlide"),
-  modalProfile = document.querySelector(".nav-link");
+  modalProfile = document.querySelector(".nav-link"),
+  closeInfoButton = document.querySelector("#close");
 
 let mainData = {};
 
@@ -130,6 +131,11 @@ function searchCity() {
     });
 }
 
+closeInfoButton.addEventListener("click", function (e) {
+  e.stopImmediatePropagation();
+  info.id = "infoNone";
+});
+
 searhButton.addEventListener("click", function (e) {
   e.stopImmediatePropagation();
   e.preventDefault();
@@ -137,7 +143,7 @@ searhButton.addEventListener("click", function (e) {
 });
 
 modalProfile.addEventListener("click", function (e) {
-
+  e.stopImmediatePropagation();
   document.location.href = "Profile.html";
 });
 
@@ -184,9 +190,16 @@ detailed();
 
 let activ = 0;
 next.addEventListener("click", function (e) {
-  images[activ].classList.remove("active");
-  carouseIndicators[activ].classList.remove("active");
-  if (activ + 1 == carouseIndicators.length) {
+  for (let i = 0; i < carouseIndicators.length; i++) {
+    if (
+      carouseIndicators[i].classList.contains("active") &&
+      images[i].classList.contains("active")
+    ) {
+      carouseIndicators[i].classList.remove("active");
+      images[i].classList.remove("active");
+    }
+  }
+  if (activ + 1 === carouseIndicators.length) {
     activ = 0;
   } else {
     activ++;
@@ -197,8 +210,15 @@ next.addEventListener("click", function (e) {
 });
 
 previous.addEventListener("click", function (e) {
-  images[activ].classList.remove("active");
-  carouseIndicators[activ].classList.remove("active");
+  for (let i = 0; i < carouseIndicators.length; i++) {
+    if (
+      carouseIndicators[i].classList.contains("active") &&
+      images[i].classList.contains("active")
+    ) {
+      carouseIndicators[i].classList.remove("active");
+      images[i].classList.remove("active");
+    }
+  }
   if (activ == 0) {
     activ = carouseIndicators.length - 1;
   } else {
