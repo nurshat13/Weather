@@ -24,8 +24,8 @@ button.addEventListener("click", function (e) {
   } else if (mail.trim() == "" && pass.trim() == "") {
     alert("Вы оставили один из полей пустым!");
   } else if (isLoged == 1) {
-    document.location.href = "index.html";
     localStorage['currentUser'] = mail;
+    document.location.href = "index.html";
   } else {
     alert("Не верный пароль или логин");
   }
