@@ -8,19 +8,26 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand">Weather</a>
-      <form class="form-inline">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button">
-          Search
-        </button>
-      </form>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand">Weather</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link">Profile</a>
+          </li>
+        </ul>
+        <form class="form-inline">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button">
+            Search
+          </button>
+        </form>
+      </div>
     </nav>
 
     <div
@@ -142,21 +149,11 @@
         </div>
       </div>
 
-      <a
-        class="carousel-control-prev"
-        href="#carousel"
-        role="button"
-        data-slide="prev"
-      >
+      <a class="carousel-control-prev" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Предыдущий</span>
       </a>
-      <a
-        class="carousel-control-next"
-        href="#carousel"
-        role="button"
-        data-slide="next"
-      >
+      <a class="carousel-control-next" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Следующий</span>
       </a>

@@ -42,7 +42,8 @@ let next = document.querySelector(".carousel-control-next"),
   searhButton = document.querySelector(".btn-outline-success"),
   cityImages = document.querySelector(".img-fluid"),
   infoNoneSlide = document.querySelector(".infoNoneSlide"),
-  infoNoneIndecetor = document.querySelector("#infoNoneSlide");
+  infoNoneIndecetor = document.querySelector("#infoNoneSlide"),
+  modalProfile = document.querySelector(".nav-link");
 
 let mainData = {};
 
@@ -132,6 +133,11 @@ function searchCity() {
 searhButton.addEventListener("click", function (e) {
   e.stopImmediatePropagation();
   searchCity();
+});
+
+modalProfile.addEventListener("click", function (e) {
+  e.stopImmediatePropagation();
+  document.location.href = "Profile.html";
 });
 
 // searhButton.addEventListener("keyup", function (e) {
